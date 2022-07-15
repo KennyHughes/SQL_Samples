@@ -5,16 +5,16 @@
 
 SELECT c.Name as "Client Name", t.[Number of Accounts], t.[Number of Commands], t.[Number of Commands]/t.[Number of Accounts] AS 'Average Number of Commands Per Account'
 		FROM
-		(Select upc.ID, count(distinct(rd.ID)) AS 'Number of Accounts', sum(rd.Commands) AS 'Number of Commands'
+		(SELECT upc.ID, COUNT(DISTINCT(rd.ID)) AS 'Number of Accounts', sum(rd.Commands) AS 'Number of Commands'
 			FROM Table2 rd
 			JOIN Table3 a ON rd.ID = a.ID
 			JOIN Table4 c ON a.ID = c.ID
-			JOIN Table5 upc on c.ID = upc.ID
+			JOIN Table5 upc ON c.ID = upc.ID
 				WHERE year(GETDATE()) = year(rd.Date)
 					AND month(GETDATE()) = month(rd.Date)
 					AND rd.Auto = 0
-					AND rd.Id IN (SELECT u.id from Table6 u where u.username = 'USER'												--Put your username here
+					AND rd.Id IN (SELECT u.id FROM Table6 u WHERE u.username = 'USER'												--Put your username here
 					) GROUP BY upc.ID
 					) AS t
-					JOIN Table7 c on t.ID = c.ID
+					JOIN Table7 c ON t.ID = c.ID
 					ORDER BY t.[Number of Commands]/t.[Number of Accounts] DESC
