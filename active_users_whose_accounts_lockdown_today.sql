@@ -1,19 +1,19 @@
 --Author: Kenneth Hughes
 --Date: 2019.11.6
---PURPOSE: To help with emailing clients who locked down this month
---RESULT: Return all users who have logged in within the last month who have accounts that have a monthly, quarterly, or yearly lockdown delay equal to today
+--PURPOSE: To help with reaching out to clients who have finalized reports this month
+--RESULT: Return all client users who have logged in within the last month who have accounts that have a delay in their reports equal to today
 	--NOTE: Use schema1-server2. 
 		--The Date Last Logged In could be a stale date. If a user is regularly logging in this shouldn't be an issue.
 
 USE database1
 
-DECLARE @DateLookup date = '11/5/2019'											--Enter the lockdown date that you want to look up
+DECLARE @DateLookup date = '11/5/2019'				--Enter the delay date that you want to look up
 
 
 
 
 --Create a table with row numbers that lists all of the business days in last month
-DECLARE @Dates Table (Row_Number int, SmallDate date)
+DECLARE @Dates TABLE (Row_Number int, SmallDate date)
 	INSERT INTO @Dates (Row_Number, SmallDate)
 		SELECT ROW_NUMBER() OVER (ORDER BY D.SmallDate) 'Row_Number', D.SmallDate
 			FROM database2.schema1.table1 D
