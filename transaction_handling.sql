@@ -5,8 +5,8 @@
 
 
 SELECT *
-FROM Table1 T1
-WHERE T1.ID = (SELECT T2.ID from Table2 T2 where T2.CUSIP = 'CUSIP')		 --Enter your CUSIP here
-AND T1.Date = '11/20/19'                                                   --Enter the date here
-AND T1.Status IS NOT NULL
-AND T1.Type = 'COUPON'
+  FROM Table1 T1
+    WHERE T1.ID = (SELECT T2.ID FROM Table2 T2 WHERE T2.CUSIP = 'CUSIP')		 --Enter your CUSIP here
+    AND T1.Date = '11/20/19'                                                   --Enter the date here
+    AND T1.Status IS NOT NULL
+    AND T1.Type = 'COUPON'
