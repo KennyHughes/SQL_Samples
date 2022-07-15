@@ -17,6 +17,6 @@
 
 
 --Insert this after your query
-		Set @end = getdate();
+		SET @end = getdate();
 
-		SELECT 'Run 1' as 'Time to execute query', datediff(MILLISECOND, @start,@end) AS 'Elapsed time (milliseconds)';
+		SELECT 'Run 1' AS 'Time to execute query', datediff(MILLISECOND, @start,@end) AS 'Elapsed time (milliseconds)';
